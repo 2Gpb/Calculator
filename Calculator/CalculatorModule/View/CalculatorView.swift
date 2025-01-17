@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct CalculatorView: View {
+    
+    // MARK: - ViewModel
+    @EnvironmentObject var viewModel: CalculatorViewModel
+    
     // MARK: - Constants
     private enum Constants {
         enum View {
@@ -30,20 +34,6 @@ struct CalculatorView: View {
         }
     }
     
-    // MARK: - Private variables
-    @State private var value: String = "0"
-    @State private var number: Double = 0
-    @State private var currentOperation: Operation = .none
-    
-    // MARK: - Private fields
-    private let buttons: [[CalcButton]] = [
-        [.clear, .negative, .percent, .divide],
-        [.seven, .eight, .nine, .multiple],
-        [.four, .five, .six, .minus],
-        [.one, .two, .three, .plus],
-        [.zero, .dec, .equal]
-    ]
-    
     // MARK: - Body
     var body: some View {
         ZStack {
@@ -58,7 +48,7 @@ struct CalculatorView: View {
                 // MARK: - Display
                 HStack {
                     Spacer()
-                    Text(value)
+                    Text(viewModel.value)
                         .foregroundColor(Constants.Display.textColor)
                         .font(.system(size: Constants.Display.fontSize,
                                       weight: Constants.Display.weight)
@@ -68,11 +58,11 @@ struct CalculatorView: View {
                 }
                 
                 // MARK: - Buttons
-                ForEach(buttons, id: \.self) { row in
+                ForEach(viewModel.buttons, id: \.self) { row in
                     HStack(spacing: Constants.View.spacing) {
                         ForEach(row, id: \.self) { button in
                             Button {
-                                didPressButton(button)
+                                viewModel.didPressButton(button)
                             } label: {
                                 Text(button.rawValue)
                                     .frame(width: buttonWidth(button), height: buttonHeight(button))
@@ -102,64 +92,9 @@ struct CalculatorView: View {
     private func buttonHeight(_ button: CalcButton) -> CGFloat {
         return (UIScreen.main.bounds.width - Constants.View.totalSpacing) / 4
     }
-    
-    // MARK: - Actions
-    func didPressButton(_ button: CalcButton) {
-        switch button {
-        case .equal:
-            value = String(format: "%g", operation(Double(value) ?? 0))
-            number = 0
-        case .plus:
-            currentOperation = .plus
-            number = Double(value) ?? 0
-            value += "+"
-        case .minus:
-            currentOperation = .minus
-            number = Double(value) ?? 0
-            value += "-"
-        case .multiple:
-            currentOperation = .multiply
-            number = Double(value) ?? 0
-            value += "*"
-        case .divide:
-            currentOperation = .divide
-            number = Double(value) ?? 0
-            value += "÷"
-        case .clear:
-            value = "0"
-        case .percent:
-            value = String(format: "%g", (Double(value) ?? 0) / 100.0)
-        case .negative:
-            value = String(format: "%g", -(Double(value) ?? 0))
-        case .dec:
-            if !value.contains(".") {
-                value += "."
-            }
-        default:
-            if value == "0" || value.last == "+" || value.last == "-" || value.last == "*" || value.last == "÷" {
-                value = button.rawValue
-            } else {
-                value += button.rawValue
-            }
-        }
-    }
-    
-    func operation(_ currentValue: Double) -> Double {
-        switch currentOperation {
-        case .plus:
-            return number + currentValue
-        case .minus:
-            return number - currentValue
-        case .multiply:
-            return number * currentValue
-        case .divide:
-            return number / currentValue
-        default:
-            return currentValue
-        }
-    }
 }
 
 #Preview {
     CalculatorView()
+        .environmentObject(CalculatorViewModel())
 }
