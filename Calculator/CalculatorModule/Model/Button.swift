@@ -49,3 +49,20 @@ enum CalcButton: String {
         }
     }
 }
+
+extension CalcButton {
+    var operation: (operation: Operation, sign: String) {
+        switch self {
+        case .plus:
+            return (.plus, "+")
+        case.minus:
+            return (.minus, "-")
+        case .multiple:
+            return (.multiply, "×")
+        case .divide:
+            return (.divide, "÷")
+        default:
+            return (.none, "")
+        }
+    }
+}
