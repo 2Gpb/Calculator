@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
-enum Button: String {
+enum CalcButton: String {
     case zero = "0"
     case one = "1"
     case two = "2"
@@ -29,18 +29,18 @@ enum Button: String {
     case negative = "+/-"
     case clear = "C"
     
-    var color: UIColor {
+    var color: Color {
         switch self {
         case .plus, .minus, .equal, .multiple, .divide:
-            return UIColor(named: "OrangeConvert") ?? .orange
+            return .orange
         case .clear, .negative, .percent:
-            return UIColor(named: "LightGrayConvert") ?? .lightGray
+            return .white
         default:
-            return UIColor(named: "GrayConvert") ?? .gray
+            return .gray
         }
     }
     
-    var textColor: UIColor {
+    var textColor: Color {
         switch self {
         case .clear, .negative, .percent:
             return .black
