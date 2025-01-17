@@ -32,11 +32,11 @@ enum CalcButton: String {
     var color: Color {
         switch self {
         case .plus, .minus, .equal, .multiple, .divide:
-            return .orange
+            return .orangeCalc
         case .clear, .negative, .percent:
-            return .white
+            return .lightGrayCalc
         default:
-            return .gray
+            return .grayCalc
         }
     }
     
