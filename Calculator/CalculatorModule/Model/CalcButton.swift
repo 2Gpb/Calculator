@@ -51,18 +51,18 @@ enum CalcButton: String {
 }
 
 extension CalcButton {
-    var operation: (operation: Operation, sign: String) {
+    var operation: Operation {
         switch self {
         case .plus:
-            return (.plus, "+")
+            return .plus
         case.minus:
-            return (.minus, "-")
+            return .minus
         case .multiple:
-            return (.multiply, "×")
+            return .multiply
         case .divide:
-            return (.divide, "÷")
+            return .divide
         default:
-            return (.none, "")
+            return .none
         }
     }
 }

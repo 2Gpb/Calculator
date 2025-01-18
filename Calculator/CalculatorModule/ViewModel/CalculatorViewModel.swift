@@ -12,6 +12,7 @@ class CalculatorViewModel: ObservableObject {
     @Published var value: String = "0"
     @Published var number: Double = 0
     @Published var currentOperation: Operation = .none
+    @Published var count = 0
     
     // MARK: - Private fields
     let buttons: [[CalcButton]] = [
@@ -24,39 +25,39 @@ class CalculatorViewModel: ObservableObject {
     
     // MARK: - Button actions
     func didPressButton(_ button: CalcButton) {
-            switch button {
-            case .equal:
+        switch button {
+        case .equal:
+            value = String(format: "%g", operation(Double(value) ?? 0))
+            number = 0
+            currentOperation = .none
+        case .plus, .minus, .multiple, .divide:
+            if currentOperation != .none {
                 value = String(format: "%g", operation(Double(value) ?? 0))
-                number = 0
-                currentOperation = .none
-            case .plus, .minus, .multiple, .divide:
-                if currentOperation != .none {
-                    value = String(format: "%g", operation(Double(value) ?? 0))
-                }
-                let buttonInfo = button.operation
-                currentOperation = buttonInfo.operation
-                number = Double(value) ?? 0
-                value += buttonInfo.sign
-            case .clear:
-                value = "0"
-                number = 0
-                currentOperation = .none
-            case .percent:
-                value = String(format: "%g", (Double(value) ?? 0) / 100.0)
-            case .negative:
-                value = String(format: "%g", -(Double(value) ?? 0))
-            case .dec:
-                if !value.contains(".") {
-                    value += "."
-                }
-            default:
-                if value == "0" || value.last == "+" || value.last == "-" || value.last == "×" || value.last == "÷" {
-                    value = button.rawValue
-                } else {
-                    value += button.rawValue
-                }
+            }
+            currentOperation = button.operation
+            number = Double(value) ?? 0
+            count += 1
+        case .clear:
+            value = "0"
+            number = 0
+            currentOperation = .none
+        case .percent:
+            value = String(format: "%g", (Double(value) ?? 0) / 100.0)
+        case .negative:
+            value = String(format: "%g", -(Double(value) ?? 0))
+        case .dec:
+            if !value.contains(".") {
+                value += "."
+            }
+        default:
+            if value == "0" || count > 0 {
+                value = button.rawValue
+                count = 0
+            } else {
+                value += button.rawValue
             }
         }
+    }
     
     func operation(_ currentValue: Double) -> Double {
         switch currentOperation {

@@ -21,8 +21,8 @@ struct CalculatorView: View {
         
         enum Display {
             static let textColor: Color = .white
-            static let fontSize: CGFloat = 90
-            static let weight: Font.Weight = .light
+            static let fontSize: CGFloat = 84
+            static let weight: Font.Weight = .regular
             static let padding: CGFloat = 28
             static let typePadding: Edge.Set = .horizontal
             static let defaultValue: String = "0"
