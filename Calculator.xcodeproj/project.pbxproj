@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		D047291B2D3E5777009ACC0D /* PBXContainerItemProxy */ = {
+		D04729282D3E5AE2009ACC0D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D083C72B2D3AABEA00279E9E /* Project object */;
 			proxyType = 1;
@@ -17,11 +17,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D04729172D3E5777009ACC0D /* CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D04729242D3E5AE2009ACC0D /* CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D083C7332D3AABEA00279E9E /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		D04729252D3E5AE2009ACC0D /* CalculatorTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CalculatorTests;
+			sourceTree = "<group>";
+		};
 		D083C7352D3AABEA00279E9E /* Calculator */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Calculator;
@@ -30,7 +35,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D04729142D3E5777009ACC0D /* Frameworks */ = {
+		D04729212D3E5AE2009ACC0D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				D083C7352D3AABEA00279E9E /* Calculator */,
+				D04729252D3E5AE2009ACC0D /* CalculatorTests */,
 				D083C7342D3AABEA00279E9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				D083C7332D3AABEA00279E9E /* Calculator.app */,
-				D04729172D3E5777009ACC0D /* CalculatorTests.xctest */,
+				D04729242D3E5AE2009ACC0D /* CalculatorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,24 +73,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D04729162D3E5777009ACC0D /* CalculatorTests */ = {
+		D04729232D3E5AE2009ACC0D /* CalculatorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D047291D2D3E5777009ACC0D /* Build configuration list for PBXNativeTarget "CalculatorTests" */;
+			buildConfigurationList = D047292A2D3E5AE2009ACC0D /* Build configuration list for PBXNativeTarget "CalculatorTests" */;
 			buildPhases = (
-				D04729132D3E5777009ACC0D /* Sources */,
-				D04729142D3E5777009ACC0D /* Frameworks */,
-				D04729152D3E5777009ACC0D /* Resources */,
+				D04729202D3E5AE2009ACC0D /* Sources */,
+				D04729212D3E5AE2009ACC0D /* Frameworks */,
+				D04729222D3E5AE2009ACC0D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D047291C2D3E5777009ACC0D /* PBXTargetDependency */,
+				D04729292D3E5AE2009ACC0D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D04729252D3E5AE2009ACC0D /* CalculatorTests */,
 			);
 			name = CalculatorTests;
 			packageProductDependencies = (
 			);
 			productName = CalculatorTests;
-			productReference = D04729172D3E5777009ACC0D /* CalculatorTests.xctest */;
+			productReference = D04729242D3E5AE2009ACC0D /* CalculatorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D083C7322D3AABEA00279E9E /* Calculator */ = {
@@ -119,7 +128,7 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					D04729162D3E5777009ACC0D = {
+					D04729232D3E5AE2009ACC0D = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = D083C7322D3AABEA00279E9E;
 					};
@@ -143,13 +152,13 @@
 			projectRoot = "";
 			targets = (
 				D083C7322D3AABEA00279E9E /* Calculator */,
-				D04729162D3E5777009ACC0D /* CalculatorTests */,
+				D04729232D3E5AE2009ACC0D /* CalculatorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D04729152D3E5777009ACC0D /* Resources */ = {
+		D04729222D3E5AE2009ACC0D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -166,7 +175,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D04729132D3E5777009ACC0D /* Sources */ = {
+		D04729202D3E5AE2009ACC0D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,15 +192,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D047291C2D3E5777009ACC0D /* PBXTargetDependency */ = {
+		D04729292D3E5AE2009ACC0D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D083C7322D3AABEA00279E9E /* Calculator */;
-			targetProxy = D047291B2D3E5777009ACC0D /* PBXContainerItemProxy */;
+			targetProxy = D04729282D3E5AE2009ACC0D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		D047291E2D3E5777009ACC0D /* Debug */ = {
+		D047292B2D3E5AE2009ACC0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -209,7 +218,7 @@
 			};
 			name = Debug;
 		};
-		D047291F2D3E5777009ACC0D /* Release */ = {
+		D047292C2D3E5AE2009ACC0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -407,11 +416,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D047291D2D3E5777009ACC0D /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
+		D047292A2D3E5AE2009ACC0D /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D047291E2D3E5777009ACC0D /* Debug */,
-				D047291F2D3E5777009ACC0D /* Release */,
+				D047292B2D3E5AE2009ACC0D /* Debug */,
+				D047292C2D3E5AE2009ACC0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
