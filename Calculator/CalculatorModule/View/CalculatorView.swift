@@ -24,13 +24,16 @@ struct CalculatorView: View {
             static let fontSize: CGFloat = 84
             static let weight: Font.Weight = .regular
             static let padding: CGFloat = 28
-            static let typePadding: Edge.Set = .horizontal
+            static let typePadding: Edge.Set = .trailing
             static let defaultValue: String = "0"
+            static let alignment: Alignment = .trailing
+            static let lineLimit: Int = 1
         }
         
         enum Buttons {
             static let fontSize: CGFloat = 36
             static let weight: Font.Weight = .regular
+            static let numberButtonsInRow: CGFloat = 4
         }
     }
     
@@ -53,8 +56,10 @@ struct CalculatorView: View {
                         .font(.system(size: Constants.Display.fontSize,
                                       weight: Constants.Display.weight)
                         )
+                        .frame(width: UIScreen.main.bounds.width - Constants.Display.padding, alignment: Constants.Display.alignment)
                         .padding(Constants.Display.typePadding,
                                  Constants.Display.padding)
+                        .lineLimit(Constants.Display.lineLimit)
                 }
                 
                 // MARK: - Buttons
@@ -85,12 +90,12 @@ struct CalculatorView: View {
         case .zero:
             return (UIScreen.main.bounds.width - Constants.View.totalSpacing) / 2 + Constants.View.spacing
         default:
-            return (UIScreen.main.bounds.width - Constants.View.totalSpacing) / 4
+            return (UIScreen.main.bounds.width - Constants.View.totalSpacing) / Constants.Buttons.numberButtonsInRow
         }
     }
     
     private func buttonHeight(_ button: CalcButton) -> CGFloat {
-        return (UIScreen.main.bounds.width - Constants.View.totalSpacing) / 4
+        return (UIScreen.main.bounds.width - Constants.View.totalSpacing) / Constants.Buttons.numberButtonsInRow
     }
 }
 

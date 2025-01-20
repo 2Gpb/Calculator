@@ -7,12 +7,14 @@
 
 import Foundation
 
-class CalculatorViewModel: ObservableObject {
-    // MARK: - Private variables
+final class CalculatorViewModel: ObservableObject {
+    // MARK: - Published variables
     @Published var value: String = "0"
-    @Published var number: Double = 0
-    @Published var currentOperation: Operation = .none
-    @Published var count = 0
+    
+    // MARK: - Private variables
+    private var number: Double = 0
+    private var currentOperation: Operation = .none
+    private var count = 0
     
     // MARK: - Private fields
     let buttons: [[CalcButton]] = [
@@ -27,39 +29,24 @@ class CalculatorViewModel: ObservableObject {
     func didPressButton(_ button: CalcButton) {
         switch button {
         case .equal:
-            value = String(format: "%g", operation(Double(value) ?? 0))
-            number = 0
-            currentOperation = .none
+            pressEqual()
         case .plus, .minus, .multiple, .divide:
-            if currentOperation != .none {
-                value = String(format: "%g", operation(Double(value) ?? 0))
-            }
-            currentOperation = button.operation
-            number = Double(value) ?? 0
-            count += 1
+            pressCalculationSymbols(button)
         case .clear:
-            value = "0"
-            number = 0
-            currentOperation = .none
+            pressClear()
         case .percent:
-            value = String(format: "%g", (Double(value) ?? 0) / 100.0)
+            pressPercent()
         case .negative:
-            value = String(format: "%g", -(Double(value) ?? 0))
+            pressNegative()
         case .dec:
-            if !value.contains(".") {
-                value += "."
-            }
+            pressDec()
         default:
-            if value == "0" || count > 0 {
-                value = button.rawValue
-                count = 0
-            } else {
-                value += button.rawValue
-            }
+            pressNumber(button)
         }
     }
     
-    func operation(_ currentValue: Double) -> Double {
+    // MARK: - Private methods
+    private func operation(_ currentValue: Double) -> Double {
         switch currentOperation {
         case .plus:
             return number + currentValue
@@ -68,9 +55,54 @@ class CalculatorViewModel: ObservableObject {
         case .multiply:
             return number * currentValue
         case .divide:
+            guard currentValue != 0 else { return 0 }
             return number / currentValue
         default:
             return currentValue
+        }
+    }
+    
+    private func pressEqual() {
+        value = String(format: "%g", operation(Double(value) ?? 0))
+        number = 0
+        currentOperation = .none
+    }
+    
+    private func pressCalculationSymbols(_ button: CalcButton) {
+        if currentOperation != .none {
+            value = String(format: "%g", operation(Double(value) ?? 0))
+        }
+        currentOperation = button.operation
+        number = Double(value) ?? 0
+        count += 1
+    }
+    
+    private func pressClear() {
+        value = "0"
+        number = 0
+        currentOperation = .none
+    }
+    
+    private func pressPercent() {
+        value = String(format: "%g", (Double(value) ?? 0) / 100.0)
+    }
+    
+    private func pressNegative() {
+        value = String(format: "%g", -(Double(value) ?? 0))
+    }
+    
+    private func pressDec() {
+        if !value.contains(".") {
+            value += "."
+        }
+    }
+    
+    private func pressNumber(_ button: CalcButton) {
+        if value == "0" || count > 0 {
+            value = button.rawValue
+            count = 0
+        } else {
+            value += button.rawValue
         }
     }
 }
