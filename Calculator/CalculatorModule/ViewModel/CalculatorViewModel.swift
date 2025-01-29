@@ -16,7 +16,7 @@ final class CalculatorViewModel: ObservableObject {
     private var currentOperation: Operation = .none
     private var count = 0
     
-    // MARK: - Private fields
+    // MARK: - Fields
     let buttons: [[CalcButton]] = [
         [.clear, .negative, .percent, .divide],
         [.seven, .eight, .nine, .multiple],

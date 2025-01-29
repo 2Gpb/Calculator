@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    
     // MARK: - ViewModel
     @EnvironmentObject var viewModel: CalculatorViewModel
     
@@ -40,14 +39,12 @@ struct CalculatorView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            
             // MARK: - Background
             Color.black
                 .ignoresSafeArea()
             
             VStack(spacing: Constants.View.spacing) {
                 Spacer()
-                
                 // MARK: - Display
                 HStack {
                     Spacer()
